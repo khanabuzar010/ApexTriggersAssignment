@@ -1,0 +1,22 @@
+trigger UpdateProfile on Account (after Update) {
+    if(Trigger.isAfter && Trigger.isUpdate){
+        set<id> idList = new set<id>();
+        List<Contact> conList = new List<Contact>();
+        for(Account acc:accList){
+            if(account.website!=null){
+                idList.add(acc.id);
+            }
+               if(idList.size()>0)
+            {
+               List<Contact> Contact_List = [select Id,Firstname,Lastname,Profile__c,Accountid,Account.website from contact where Accountid in :idList];
+                for(Contact con : Contact_List)
+            {
+                if(con.FirstName != Null)
+                {
+                    con.Profile__c=account.website+'/'+con.Firstname+con.Lastname;
+                }
+            }
+            update conList;
+        }
+    }
+}
