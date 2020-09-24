@@ -1,7 +1,7 @@
 trigger OpportunityAmount on Opportunity (after insert, after update) {
     If(Trigger.isAfter && Trigger.isUpdate){
         List<Id> opIds = new List<Id>();
-        for(Opportunity opp:Trigger.New){
+        for(Opportunity opp:trigger.new){
             if (opp.Amount > 20000 && opp.AccountId !=NULL){
                 opIds.add(opp.AccountId);
             }
