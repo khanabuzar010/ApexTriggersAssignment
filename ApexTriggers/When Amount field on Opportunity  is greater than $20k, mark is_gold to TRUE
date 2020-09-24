@@ -1,0 +1,17 @@
+trigger OpportunityAmount on Opportunity (after insert, after update) {
+    If(Trigger.isAfter && Trigger.isUpdate){
+        List<Id> opIds = new List<Id>();
+        for(Opportunity opp:Trigger.New){
+            if (opp.Amount > 20000 && opp.AccountId !=NULL){
+                opIds.add(opp.AccountId);
+            }
+        }
+    }
+    If(Trigger.isAfter && Trigger.isUpdate){
+        List<Account> acct = new List<Account>([select Id, is_gold__c From Account where Id IN:opIds]);
+        for(Account acc : acct){
+            acc.is_gold__c=true;
+            update acc;
+        }
+    }
+}
