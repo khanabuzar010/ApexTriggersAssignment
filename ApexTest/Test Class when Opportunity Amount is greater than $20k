@@ -1,7 +1,7 @@
 @isTest
 public class TestGold {
 @isTest
-    public static void AmountTest ()
+    public static void OpportunityAmount ()
     {
         
         Account acc = new Account(Name='Test Account',First_Name='Is',Last_Name='Gold');
