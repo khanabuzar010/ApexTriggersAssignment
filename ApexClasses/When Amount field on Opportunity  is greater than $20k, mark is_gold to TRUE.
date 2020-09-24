@@ -1,7 +1,7 @@
 public class AmountCheck {
       public static void OppAmount(list<opportunity>opp)
       {
-           List<id>idlist=new List<id>();
+           List<id> idlist = new List<id>();
           for(opportunity op:opp)
           {
               if(op.Amount > 20000 && op.AccountId !=null)
@@ -9,7 +9,7 @@ public class AmountCheck {
                   idlist.add(op.AccountId);
               }
           }
-          list<Account>acct=new list <Account>([Select Id from Account where id in:idlist]);
+          List<Account> acct = new List <Account>([Select Id from Account where id in:idlist]);
           for(Account acc:acct)
           {
               acc.is_gold__c=True;
