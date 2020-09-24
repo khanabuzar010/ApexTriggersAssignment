@@ -1,0 +1,17 @@
+@isTest
+public class AccountUpdateTest{
+    @isTest private static void TestContactTrue()
+    {
+        Account oldAcc = new Account(Name='Sam',First_Name='Kashif',Last_Name='Shamshi');
+        insert oldAcc;
+    }
+    @isTest private static void TestContactFalse()
+    {
+        Account newAcc = new Account(Name='Vipin',First_Name='Anil',Last_Name='Patel');
+        insert newAcc;
+        Contact Con = new Contact(FirstName='Amit',LastName='Singh',AccountId=newAcc.Id);
+        insert Con;
+    }
+    
+    
+}
