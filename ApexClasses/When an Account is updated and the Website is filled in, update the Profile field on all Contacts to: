@@ -1,14 +1,14 @@
 public class UpdateProfile {
-    public static void AccountUpdate(List<Account>acclist){
-        set<id> idlist = new set<id>();
-        List<Contact> conlist=new List<Contact>();
-        for(account acc:acclist){
+    public static void AccountUpdate(List<Account>accList){
+        set<id> idList = new set<id>();
+        List<Contact> conList=new List<Contact>();
+        for(account acc:accList){
             if(account.website!=null){
-                idlist.add(acc.id);
+                idList.add(acc.id);
             }
-               if(idlist.size()>0)
+               if(idList.size()>0)
             {
-               List<Contact> Contact_List = [select Id,Firstname,Lastname,Profile__c,Accountid,Account.website from contact where Accountid in :idlist];
+               List<Contact> Contact_List = [select Id,Firstname,Lastname,Profile__c,Accountid,Account.website from contact where Accountid in :idList];
                 for(Contact con : Contact_List)
             {
                 if(con.FirstName != Null)
@@ -16,7 +16,7 @@ public class UpdateProfile {
                     con.Profile__c=account.website+'/'+con.Firstname+con.Lastname;
                 }
             }
-            update conlist;
+            update conList;
         }
     }
 }
